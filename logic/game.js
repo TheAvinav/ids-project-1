@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
         questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
         questionText.textContent = currentQuestion.question;
     
-        // Clear previous choices
+
         choicesList.innerHTML = '';
     
-        // Populate choices
+
         currentQuestion.choices.forEach(choice => {
             const li = document.createElement('li');
             const button = document.createElement('button');
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             choicesList.appendChild(li);
         });
     
-        // Display hint
+
         hintButton.disabled = false;
         hintText.textContent = currentQuestion.hint;
     }
@@ -109,38 +109,38 @@ document.addEventListener('DOMContentLoaded', function() {
             totalPoints += 10;
             updateTotalPoints();
     
-            // Lấy ra các nút chọn và câu trả lời đúng
+
             const choiceButtons = document.querySelectorAll('.choice');
             const correctButton = choiceButtons[currentQuestion.choices.indexOf(currentQuestion.answer)];
     
-            // Thêm lớp "correct" vào câu trả lời đúng
+
             correctButton.classList.add('correct-answer');
     
-            // Chờ 3 giây trước khi chuyển sang câu hỏi tiếp theo
+
             setTimeout(function() {
-                // Loại bỏ lớp "correct" khỏi câu trả lời đúng
+
                 correctButton.classList.remove('correct-answer');
                 
-                // Move to the next question
+
                 currentQuestionIndex++;
                 if (currentQuestionIndex < totalQuestions) {
                     showQuestion();
                 } else {
-                    // End of quiz, handle accordingly
+
                     alert('End of quiz!');
                 }
             }, 1000);
         } else {
-            // Thêm lớp "incorrect" và loại bỏ lớp "correct"
+
             selectedButton.classList.add('incorrect');
             selectedButton.classList.remove('correct');
-            // Incorrect answer, handle accordingly
+
             alert('Incorrect answer. Try again!');
         }
     }
 
 
-    // Event delegation for handling choice clicks
+
     choicesList.addEventListener('click', function(event) {
         if (event.target.matches('.choice')) {
             const selectedAnswer = event.target.textContent;
@@ -148,6 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Show the first question when the page loads
+
     showQuestion();
 });
